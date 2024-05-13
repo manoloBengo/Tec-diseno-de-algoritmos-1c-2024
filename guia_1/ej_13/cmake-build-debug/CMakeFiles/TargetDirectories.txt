@@ -1,3 +1,0 @@
-C:/Users/Usuario/CLionProjects/p1_ej13_algo3/cmake-build-debug/CMakeFiles/p1_ej13_algo3.dir
-C:/Users/Usuario/CLionProjects/p1_ej13_algo3/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/Usuario/CLionProjects/p1_ej13_algo3/cmake-build-debug/CMakeFiles/rebuild_cache.dir

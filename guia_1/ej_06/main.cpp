@@ -5,8 +5,8 @@
 using namespace std;
 
 const float Infinito = std::numeric_limits<float>::infinity();
-int c = 10;
-vector<int> B = {5,2,6,6};
+int c = 491;
+vector<int> B = {5,50,10,10,1,1,1,20,1,1,1,1,200,200,55,73,500,500,5,5,5,1,1,1,1,56,34,24,2342,42,222};
 vector<vector<pair<float,float>>> M(c);
 
 
@@ -19,7 +19,7 @@ pair<float,float> optiPago_backtracking(vector<int> &B, int i, int j){
     }
     pair<float,float> result = optiPago_backtracking(B, i-1, j-B[i]);
     return min({B[i] + result.first, 1.0 + result.second},
-               optiPago_backtracking(B, i-1, j));
+                  optiPago_backtracking(B, i-1, j));
 }
 
 pair<float,float> optiPago_topDown(vector<int> &B, int i, int j){
@@ -40,29 +40,6 @@ pair<float,float> optiPago_topDown(vector<int> &B, int i, int j){
 
 }
 
-pair<float, float> optiPago_bottomUp(vector<int> &B, int n, int c) {
-    vector<vector<pair<float, float>>> Memo(
-            n + 1,
-            vector<pair<float, float>>(c + 1, {Infinito, Infinito})
-    );
-    Memo[0][0] = {0, 0};
-
-    for (int i = 1; i <= n; i++) {
-        for (int j = c; j >= 0; j--) {
-
-
-
-            pair<float, float> r = Memo[i - 1][max(0, j - B[i])];
-            Memo[i][j] = min(
-                    {B[i] + r.first, 1.0 + r.second},
-                    Memo[i - 1][j]
-            );
-        }
-    }
-
-    return Memo[n][c];
-}
-
 
 
 int main() {
@@ -70,9 +47,9 @@ int main() {
     M = vector<vector<pair<float,float>>>(
             c + 1,
             vector<pair<float, float>>(c + 1, {-1, -1})
-    );
-    for(int k = 0; k <= B.size(); k++){
-        for(int l = 0; l <= c; l++){
+            );
+    for(int k = 0; k < B.size(); k++){
+        for(int l = 0; l < c; l++){
             M[k][l] = {-1, -1};
         }
     }
@@ -85,9 +62,8 @@ int main() {
         cout<<"\n";
     }
      */
-    pair<int,int> respuesta = optiPago_bottomUp(B, B.size(), c);
+    pair<int,int> respuesta = optiPago_topDown(B, B.size(), c);
     cout << respuesta.first << "," << respuesta.second;
 
     return 0;
 }
-
